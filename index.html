@@ -2,7 +2,8 @@
 
 
 <style>
-	body{font-family:sans-serif;background:black;color:lime;}
+	body{font-family:sans-serif;background:black;}
+	p{color:lime;font-size:22px;}
 </style>
 
 
@@ -18,21 +19,61 @@
 
 
 <script>
-	function output(message){
-		jQuery('#output').append(message);
-		jQuery('#output').append('<br>');
+function output(message){
+	jQuery('#output').append(message);
+	jQuery('#output').append('<br>');
+}
+
+
+
+output('=== It\'s voting! ===');
+output('...sort of');
+output('');
+
+
+
+
+function getVote(botType){
+	let vote = 'abstain';
+	if(botType == 'acorn'){
+		vote = 'bobo';
 	}
+	else if(botType == 'bobo'){
+		vote = 'bobo';
+	}
+	else if(botType == 'charlie'){
+		vote = 'charlie';
+	}
+	else if(botType == 'danzig'){
+		vote = 'bobo';
+	}
+	return vote;
+}
 
 
 
-	output('=== It\'s voting! ===');
-	output('...sort of');
 
+let population = {
+	'acorn':'constant=bobo',
+	'bobo':'constant=bobo',
+	'charlie':'constant=charlie',
+	'danzig':'constant=bobo',
+}
 
+output('Showing all votes:');
+let message = '';
+for(voter in population){
+	message = ''
+	message += voter;
+	message += ':';
+	message += getVote(voter);
+	output(message);
+}
+output('');
 
-
-
-
+let winner = 'charlie';
+output('Who did the bots elect?');
+output(winner);
 
 
 
