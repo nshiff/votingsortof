@@ -1,6 +1,10 @@
 "use strict;"
 
-var Voter = function(id, votingStyle, choice){
+let VotingStyle = {
+	'CONSTANT':'CONSTANT',
+}
+
+let Voter = function(id, votingStyle, choice){
 	this._id = id;
 	this._votingStyle = votingStyle;
 	this._choice = choice;
@@ -10,13 +14,10 @@ var Voter = function(id, votingStyle, choice){
 	}
 	this.getVote = function(){
 		if(this._choice.length < 1){
-		
 			// VotingStyle.RANDOM
 			let populationSubscript = Math.floor(Math.random() * POPULATION.length);
 			this._choice = POPULATION[populationSubscript];
-			
 		}
-		
 		return this._choice;
 
 	}
@@ -36,9 +37,29 @@ jQuery(document).ready(function(){
 	output('=== It\'s voting! ===');
 	output('...sort of');
 	output('');
-
-
-
+	
+	
+	
+	
+	let v = new Voter('alice', VotingStyle.CONSTANT, 'bobo');
+	console.log(v);
+	console.log(v.getVote());
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	let winner = 'charlie';
 	output('Who did the bots elect?');
 	output(winner);
