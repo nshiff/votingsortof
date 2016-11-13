@@ -9,6 +9,7 @@
 
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="Voter.js"></script>
 	<script>var jQuery = $;</script>
 </head>
 
@@ -23,53 +24,41 @@ function output(message){
 	jQuery('#output').append(message);
 	jQuery('#output').append('<br>');
 }
-
-
-
 output('=== It\'s voting! ===');
 output('...sort of');
 output('');
 
 
+let population = [];
+population.push(new Voter('sandy'));
+population.push(new Voter('alice'));
+population.push(new Voter('bob'));
+population.push(new Voter('charlie'));
+population.push(new Voter('danzig'));
+
+let electionResults = {}
 
 
-function getVote(botType){
-	let vote = 'abstain';
-	if(botType == 'acorn'){
-		vote = 'bobo';
+output('Showing all voters as id:choice');
+
+for(let i=0; i<population.length; i++){
+
+	let id = population[i].id;
+	let choice = population[i].choice;
+	
+	// tally vote
+	if(!electionResults[choice]){
+		electionResults[choice] = 0;
 	}
-	else if(botType == 'bobo'){
-		vote = 'bobo';
-	}
-	else if(botType == 'charlie'){
-		vote = 'charlie';
-	}
-	else if(botType == 'danzig'){
-		vote = 'bobo';
-	}
-	return vote;
-}
-
-
-
-
-let population = {
-	'acorn':'constant=bobo',
-	'bobo':'constant=bobo',
-	'charlie':'constant=charlie',
-	'danzig':'constant=bobo',
-}
-
-output('Showing all votes:');
-let message = '';
-for(voter in population){
-	message = ''
-	message += voter;
-	message += ':';
-	message += getVote(voter);
-	output(message);
+	electionResults[choice] += 1;
+	
+	// report result to user
+	output(id + ':' + choice);
+	
 }
 output('');
+
+
 
 let winner = 'charlie';
 output('Who did the bots elect?');
