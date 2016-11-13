@@ -1,104 +1,14 @@
-<!DOCTYPE html>
 <style>
 	body{font-family:sans-serif;background:black;}
 	p{color:lime;font-size:22px;}
 </style>
-
 <head>
-	<meta charset="utf-8">
-	<script>"use strict;"</script>
+	<meta charset="utf-8"><!-- avoid console warning from Firefox -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="Voter.js"></script>
-	<script>var jQuery = $;</script>
+	<script>var jQuery = $; /*because Hail Magento*/ </script>
 </head>
-
-
 <body>
-
-<p id='output'></p>
-
-
-<script>
-"use strict;"
-function output(message){
-	jQuery('#output').append(message);
-	jQuery('#output').append('<br>');
-}
-output('=== It\'s voting! ===');
-output('...sort of');
-output('');
-
-
-let population = [];
-population.push(new Voter('sandy'));
-population.push(new Voter('alice'));
-population.push(new Voter('bob'));
-population.push(new Voter('charlie'));
-population.push(new Voter('danzig'));
-
-let electionResults = {}
-
-
-output('Showing all voters as id:choice');
-
-for(let i=0; i<population.length; i++){
-
-	let id = population[i].id;
-	let choice = population[i].choice;
-	
-	// tally vote
-	if(!electionResults[choice]){
-		electionResults[choice] = 0;
-	}
-	electionResults[choice] += 1;
-	
-	// report result to user
-	output(id + ':' + choice);
-	
-}
-output('');
-
-
-
-let winner = 'charlie';
-output('Who did the bots elect?');
-output(winner);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</script>
-
-
-
-
-
-
-
+	<p id='output'></p>
+	<!--<script src="script.js" />-->
 </body>
 
