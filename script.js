@@ -12,14 +12,17 @@ let INPUT = {
 	'alice':{
 		'votingstyle':votingstyle.CONSTANT,
 		'choice':'bobo',
+		'receivedVotes':0,
 	},
 	'bobo':{
 		'votingstyle':votingstyle.CONSTANT,
 		'choice':'bobo',
+		'receivedVotes':0,
 	},
 	'charlie':{
 		'votingstyle':votingstyle.CONSTANT,
 		'choice':'charlie',
+		'receivedVotes':0,
 	},
 
 
@@ -27,31 +30,6 @@ let INPUT = {
 
 }
 
-
-
-
-
-
-
-let Voter = function(id, votingStyle, choice){
-	this._id = id;
-	this._votingStyle = votingStyle;
-	this._choice = choice;
-	
-	this.getId = function(){
-		return this._id;
-	}
-	this.getVote = function(){
-		if(this._choice.length < 1){
-			// VotingStyle.RANDOM
-			let populationSubscript = Math.floor(Math.random() * POPULATION.length);
-			this._choice = POPULATION[populationSubscript];
-		}
-		return this._choice;
-
-	}
-
-}
 
 
 
@@ -68,12 +46,16 @@ jQuery(document).ready(function(){
 	output('');
 	
 	
+	
+
+	
+	
 	let v = INPUT.alice;
 	console.log(v.votingstyle);
 	console.log(v.choice);
-	
-	
-	
+	console.log(v.receivedVotes);
+	v.receivedVotes += 1;
+	console.log(v.receivedVotes);
 	
 	
 });
