@@ -7,7 +7,7 @@ let votingstyle = {
 
 
 
-let INPUT = {
+let CITIZENS = {
 
 	'alice':{
 		'votingstyle':votingstyle.CONSTANT,
@@ -45,36 +45,27 @@ jQuery(document).ready(function(){
 	output('...sort of');
 	output('');
 	
+	for(citizen in CITIZENS){
+		let nextChoice = CITIZENS[citizen].choice;
+		CITIZENS[nextChoice].receivedVotes += 1;
+	}
 	
-	
+	var maximumSoFar = {
+		'name':'',
+		'receivedVotes':0,
+	}
+	for(citizen in CITIZENS){
+		
+		let receivedVotes = CITIZENS[citizen].receivedVotes;
+		console.log(citizen + ':' + receivedVotes);
 
-	
-	
-	let v = INPUT.alice;
-	console.log(v.votingstyle);
-	console.log(v.choice);
-	console.log(v.receivedVotes);
-	v.receivedVotes += 1;
-	console.log(v.receivedVotes);
-	v.receivedVotes = 0;
-	
-	
-	console.log(INPUT.alice.choice);
-	console.log(INPUT.bobo.choice);
-	console.log(INPUT.charlie.choice);
-	
-	
-	
-	console.log(INPUT[INPUT.alice.choice]);
-	console.log(INPUT[INPUT.bobo.choice]);
-	console.log(INPUT[INPUT.charlie.choice]);
-	
-	
-	
-	
-	
-	
-	
+		if(receivedVotes > maximumSoFar.receivedVotes){
+			maximumSoFar.name = citizen;
+			maximumSoFar.receivedVotes = receivedVotes;
+		}
+	}
+	console.log('Winner:');
+	console.log(maximumSoFar);
 	
 	
 });
