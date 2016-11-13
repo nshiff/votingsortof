@@ -28,18 +28,20 @@ var Voter = function(id, votingStyle, choice){
 // ----------------- MAIN -----------------
 
 function output(message){
-	jQuery('#output').append(message);
-	jQuery('#output').append('<br>');
+	let selector_output = '#output';
+	jQuery(selector_output).append(message);
+	jQuery(selector_output).append('<br>');
 }
-output('=== It\'s voting! ===');
-output('...sort of');
-output('');
+jQuery(document).ready(function(){
+	output('=== It\'s voting! ===');
+	output('...sort of');
+	output('');
 
 
 
-let winner = 'charlie';
-output('Who did the bots elect?');
-output(winner);
-
+	let winner = 'charlie';
+	output('Who did the bots elect?');
+	output(winner);
+});
 
 
