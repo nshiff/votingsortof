@@ -1,8 +1,37 @@
 "use strict;"
 
-let VotingStyle = {
+let votingstyle = {
 	'CONSTANT':'CONSTANT',
 }
+
+
+
+
+let INPUT = {
+
+	'alice':{
+		'votingstyle':votingstyle.CONSTANT,
+		'choice':'bobo',
+	},
+	'bobo':{
+		'votingstyle':votingstyle.CONSTANT,
+		'choice':'bobo',
+	},
+	'charlie':{
+		'votingstyle':votingstyle.CONSTANT,
+		'choice':'charlie',
+	},
+
+
+
+
+}
+
+
+
+
+
+
 
 let Voter = function(id, votingStyle, choice){
 	this._id = id;
@@ -39,30 +68,14 @@ jQuery(document).ready(function(){
 	output('');
 	
 	
-	
-	
-	let v = new Voter('alice', VotingStyle.CONSTANT, 'bobo');
-	console.log(v);
-	console.log(v.getVote());
-	
+	let v = INPUT.alice;
+	console.log(v.votingstyle);
+	console.log(v.choice);
 	
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	let winner = 'charlie';
-	output('Who did the bots elect?');
-	output(winner);
 });
 
 
