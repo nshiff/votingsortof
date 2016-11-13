@@ -56,6 +56,25 @@ jQuery(document).ready(function(){
 	console.log(v.receivedVotes);
 	v.receivedVotes += 1;
 	console.log(v.receivedVotes);
+	v.receivedVotes = 0;
+	
+	
+	console.log(INPUT.alice.choice);
+	console.log(INPUT.bobo.choice);
+	console.log(INPUT.charlie.choice);
+	
+	
+	
+	console.log(INPUT[INPUT.alice.choice]);
+	console.log(INPUT[INPUT.bobo.choice]);
+	console.log(INPUT[INPUT.charlie.choice]);
+	
+	
+	
+	
+	
+	
+	
 	
 	
 });
