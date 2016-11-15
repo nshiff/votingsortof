@@ -27,7 +27,11 @@ let CITIZENS = {
 		'choice':'',
 		'receivedVotes':0,
 	},
-
+	'elaine':{
+		'votingstyle':votingstyle.RANDOM,
+		'choice':'',
+		'receivedVotes':0,
+	},
 
 }
 
@@ -57,12 +61,13 @@ jQuery(document).ready(function(){
 	output('...sort of');
 	output('');
 	
+	output('Running elections...');
 	for(citizen in CITIZENS){
-		// let nextChoice = CITIZENS[citizen].choice;
 		let nextChoice = getVote(citizen);
 		CITIZENS[nextChoice].receivedVotes += 1;
 	}
 	
+	output('Tallying the votes...');
 	var maximumSoFar = {
 		'name':'',
 		'receivedVotes':0,
@@ -79,7 +84,8 @@ jQuery(document).ready(function(){
 	}
 	console.log('Winner:');
 	console.log(maximumSoFar);
-	
+	output('And the winner is: ');
+	output(maximumSoFar.name);
 	
 });
 
