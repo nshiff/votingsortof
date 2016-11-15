@@ -54,21 +54,26 @@ let PollingPlace = {
 	
 	},
 
+	_resetVoteCounts:function(){
+		for(citizen in CITIZENS){
+			CITIZENS[citizen].receivedVotes = 0;
+		}
+	},
+
 
 	runElection: function(){
+		PollingPlace._resetVoteCounts();
 		
 		for(citizen in CITIZENS){
 			let nextChoice = PollingPlace._getVote(citizen);
 			CITIZENS[nextChoice].receivedVotes += 1;
 		}
-	
-		output('Tallying the votes...');
-		var maximumSoFar = {
+		
+		let maximumSoFar = {
 			'name':'',
 			'receivedVotes':0,
 		}
 		for(citizen in CITIZENS){
-		
 			let receivedVotes = CITIZENS[citizen].receivedVotes;
 			console.log(citizen + ':' + receivedVotes);
 
@@ -77,11 +82,7 @@ let PollingPlace = {
 				maximumSoFar.receivedVotes = receivedVotes;
 			}
 		}
-		console.log('Winner:');
-		console.log(maximumSoFar);
-		output('And the winner is: ');
-		output(maximumSoFar.name);
-
+		return maximumSoFar.name;
 	}
 
 
@@ -101,8 +102,15 @@ jQuery(document).ready(function(){
 	output('');
 	
 	output('Running elections...');
-	PollingPlace.runElection();
-
+	let winners = {};
+	for(let i=0; i<10; i++){
+		let winner = PollingPlace.runElection();
+		if(!winners[winner]){
+			winners[winner] = 0;
+		}
+		winners[winner] += 1;
+	}
+	output(JSON.stringify(winners));
 	
 });
 
