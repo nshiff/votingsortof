@@ -32,6 +32,26 @@ let CITIZENS = {
 		'choice':'',
 		'receivedVotes':0,
 	},
+	'fiona':{
+		'votingstyle':votingstyle.RANDOM,
+		'choice':'',
+		'receivedVotes':0,
+	},
+	'grace':{
+		'votingstyle':votingstyle.RANDOM,
+		'choice':'',
+		'receivedVotes':0,
+	},
+	'hershey':{
+		'votingstyle':votingstyle.RANDOM,
+		'choice':'',
+		'receivedVotes':0,
+	},
+	'iguana':{
+		'votingstyle':votingstyle.RANDOM,
+		'choice':'',
+		'receivedVotes':0,
+	},
 
 }
 
@@ -103,7 +123,7 @@ jQuery(document).ready(function(){
 	
 	output('Running elections...');
 	let winners = {};
-	for(let i=0; i<10; i++){
+	for(let i=0; i<20; i++){
 		let winner = PollingPlace.runElection();
 		if(!winners[winner]){
 			winners[winner] = 0;
