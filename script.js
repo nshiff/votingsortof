@@ -37,16 +37,55 @@ let CITIZENS = {
 
 
 
-function getVote(citizenName){
-	let citizenObject = CITIZENS[citizenName];
-	if(citizenObject.choice.length > 0){
-		return citizenObject.choice;
+
+
+
+let PollingPlace = {
+
+	_getVote: function getVote(citizenName){
+		let citizenObject = CITIZENS[citizenName];
+		if(citizenObject.choice.length > 0){
+			return citizenObject.choice;
+		}
+	
+		let keys = Object.keys(CITIZENS);
+		let randomSubscript = Math.floor(Math.random() * keys.length);
+		return keys[randomSubscript];
+	
+	},
+
+
+	runElection: function(){
+		
+		for(citizen in CITIZENS){
+			let nextChoice = PollingPlace._getVote(citizen);
+			CITIZENS[nextChoice].receivedVotes += 1;
+		}
+	
+		output('Tallying the votes...');
+		var maximumSoFar = {
+			'name':'',
+			'receivedVotes':0,
+		}
+		for(citizen in CITIZENS){
+		
+			let receivedVotes = CITIZENS[citizen].receivedVotes;
+			console.log(citizen + ':' + receivedVotes);
+
+			if(receivedVotes > maximumSoFar.receivedVotes){
+				maximumSoFar.name = citizen;
+				maximumSoFar.receivedVotes = receivedVotes;
+			}
+		}
+		console.log('Winner:');
+		console.log(maximumSoFar);
+		output('And the winner is: ');
+		output(maximumSoFar.name);
+
 	}
-	
-	let keys = Object.keys(CITIZENS);
-	let randomSubscript = Math.floor(Math.random() * keys.length);
-	return keys[randomSubscript];
-	
+
+
+
 }
 
 // ----------------- MAIN -----------------
@@ -62,30 +101,8 @@ jQuery(document).ready(function(){
 	output('');
 	
 	output('Running elections...');
-	for(citizen in CITIZENS){
-		let nextChoice = getVote(citizen);
-		CITIZENS[nextChoice].receivedVotes += 1;
-	}
-	
-	output('Tallying the votes...');
-	var maximumSoFar = {
-		'name':'',
-		'receivedVotes':0,
-	}
-	for(citizen in CITIZENS){
-		
-		let receivedVotes = CITIZENS[citizen].receivedVotes;
-		console.log(citizen + ':' + receivedVotes);
+	PollingPlace.runElection();
 
-		if(receivedVotes > maximumSoFar.receivedVotes){
-			maximumSoFar.name = citizen;
-			maximumSoFar.receivedVotes = receivedVotes;
-		}
-	}
-	console.log('Winner:');
-	console.log(maximumSoFar);
-	output('And the winner is: ');
-	output(maximumSoFar.name);
 	
 });
 
