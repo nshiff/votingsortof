@@ -2,10 +2,8 @@
 
 let votingstyle = {
 	'CONSTANT':'CONSTANT',
+	'RANDOM':'RANDOM',
 }
-
-
-
 
 let CITIZENS = {
 
@@ -24,14 +22,28 @@ let CITIZENS = {
 		'choice':'charlie',
 		'receivedVotes':0,
 	},
-
-
+	'dickinson':{
+		'votingstyle':votingstyle.RANDOM,
+		'choice':'',
+		'receivedVotes':0,
+	},
 
 
 }
 
 
 
+function getVote(citizenName){
+	let citizenObject = CITIZENS[citizenName];
+	if(citizenObject.choice.length > 0){
+		return citizenObject.choice;
+	}
+	
+	let keys = Object.keys(CITIZENS);
+	let randomSubscript = Math.floor(Math.random() * keys.length);
+	return keys[randomSubscript];
+	
+}
 
 // ----------------- MAIN -----------------
 
@@ -46,7 +58,8 @@ jQuery(document).ready(function(){
 	output('');
 	
 	for(citizen in CITIZENS){
-		let nextChoice = CITIZENS[citizen].choice;
+		// let nextChoice = CITIZENS[citizen].choice;
+		let nextChoice = getVote(citizen);
 		CITIZENS[nextChoice].receivedVotes += 1;
 	}
 	
